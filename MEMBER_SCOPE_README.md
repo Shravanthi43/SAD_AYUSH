@@ -1,246 +1,323 @@
 
 # AYUSH Digital Health Platform – Member Responsibilities
 
-**Project:** AYUSH Digital Health Platform (updated `Ayush_Health.zip`)
+**Project:** AYUSH Digital Health Platform
 
-This document describes the responsibilities, included files, technologies, setup instructions and integration dependencies of the project members.
+This document defines the responsibilities, scope, included components, technologies and dependencies of all four project members.
 
 ---
 
 # Member 1 – Frontend Development
 
-**Scope:** Owns the React/Vite user interface and frontend assets for the unified AYUSH application.
+## Scope
+Owns the client-side React/Vite application, shared user interface and frontend modules for all AYUSH domains.
 
 ## Responsibilities
-- Shared React application shell, navigation, registration, patient/doctor/clinic/admin screens and frontend hooks.
-- Frontend modules for Ayurveda, Common Clinical and Longitudinal Record, plus the service-picker registration modules for the other AYUSH systems.
-- Frontend API client, localization, speech UI, Aadhaar/face capture UI, styles and reusable components.
-- Vite aliases and HTML entry point; browser-side face recognition model assets.
+- Shared React UI and application navigation.
+- Patient, Doctor, Clinic and Admin screens.
+- Registration and user interface components.
+- Frontend modules for Ayurveda, Yoga & Naturopathy, Unani, Siddha and Homoeopathy.
+- Common Clinical and Longitudinal Record frontend modules.
+- Frontend API client and integration with backend APIs.
+- Localization, speech UI and reusable components.
+- Aadhaar and face-capture user interface.
+- Vite configuration and frontend build setup.
+- Public face-recognition model assets.
 
-## Included files (original project-relative paths)
-- `index.html`
-- `longitudinal-record-service/frontend/pages/patient/Timeline.jsx`
-- `public/models/face_landmark_68_model-weights_manifest.json`
-- `public/models/face_landmark_68_model.bin`
-- `public/models/face_recognition_model-weights_manifest.json`
-- `public/models/face_recognition_model.bin`
-- `public/models/tiny_face_detector_model-weights_manifest.json`
-- `public/models/tiny_face_detector_model.bin`
-- `scripts/copy-models.js`
-- `services/ayurveda-service/frontend/DoctorLayout.jsx`
-- `services/ayurveda-service/frontend/index.js`
-- `services/ayurveda-service/frontend/pages/Comparison.jsx`
-- `services/ayurveda-service/frontend/pages/Dashavidha.jsx`
-- `services/ayurveda-service/frontend/pages/Diagnosis.jsx`
-- `services/ayurveda-service/frontend/pages/Examination.jsx`
-- `services/ayurveda-service/frontend/pages/PrakritiVikriti.jsx`
-- `services/ayurveda-service/frontend/pages/Therapy.jsx`
-- `services/common-clinical-service/frontend/components/CommonClinical.jsx`
-- `services/common-clinical-service/frontend/pages/UploadPrescription.jsx`
-- `services/common-clinical-service/frontend/pages/patient/AddRecord.jsx`
-- `services/common-clinical-service/frontend/pages/patient/Medicines.jsx`
-- `services/common-clinical-service/frontend/pages/patient/Uploads.jsx`
-- `services/homoeopathy-service/frontend/index.js`
-- `services/siddha-service/frontend/index.js`
-- `services/unani-service/frontend/index.js`
-- `services/yoga-naturopathy-service/frontend/index.js`
-- `shared-platform/frontend/App.jsx`
-- `shared-platform/frontend/api/client.js`
-- `shared-platform/frontend/components/AadhaarFetch.jsx`
-- `shared-platform/frontend/components/FaceCapture.jsx`
-- `shared-platform/frontend/components/Field.jsx`
-- `shared-platform/frontend/components/FormPage.jsx`
-- `shared-platform/frontend/components/LangSwitch.jsx`
-- `shared-platform/frontend/components/OtpBox.jsx`
-- `shared-platform/frontend/components/PatientShell.jsx`
-- `shared-platform/frontend/components/RoleRegister.jsx`
-- `shared-platform/frontend/components/Steps.jsx`
-- `shared-platform/frontend/components/TopBar.jsx`
-- `shared-platform/frontend/components/VoiceMic.jsx`
-- `shared-platform/frontend/constants/options.js`
-- `shared-platform/frontend/domains.js`
-- `shared-platform/frontend/hooks/useDraft.js`
-- `shared-platform/frontend/hooks/usePrefill.js`
-- `shared-platform/frontend/hooks/useSummary.js`
-- `shared-platform/frontend/i18n/dict.js`
-- `shared-platform/frontend/i18n/domTranslate.js`
-- `shared-platform/frontend/i18n/index.jsx`
-- `shared-platform/frontend/index.css`
-- `shared-platform/frontend/main.jsx`
-- `shared-platform/frontend/pages/Assistant.jsx`
-- `shared-platform/frontend/pages/DomainConsultation.jsx`
-- `shared-platform/frontend/pages/Landing.jsx`
-- `shared-platform/frontend/pages/Me.jsx`
-- `shared-platform/frontend/pages/admin/Dashboard.jsx`
-- `shared-platform/frontend/pages/clinic/Dashboard.jsx`
-- `shared-platform/frontend/pages/doctor/FindPatient.jsx`
-- `shared-platform/frontend/pages/patient/Privacy.jsx`
-- `shared-platform/frontend/pages/patient/Profile.jsx`
-- `shared-platform/frontend/pages/patient/Services.jsx`
-- `shared-platform/frontend/pages/register/Admin.jsx`
-- `shared-platform/frontend/pages/register/Choose.jsx`
-- `shared-platform/frontend/pages/register/Clinic.jsx`
-- `shared-platform/frontend/pages/register/Doctor.jsx`
-- `shared-platform/frontend/pages/register/Patient.jsx`
-- `shared-platform/frontend/utils/aadhaar.js`
-- `shared-platform/frontend/utils/session.js`
-- `shared-platform/frontend/utils/time.js`
-- `shared-platform/frontend/voice/speech.js`
-- `vite.config.js`
+## Included Components
+- Shared Platform frontend.
+- Ayurveda frontend modules.
+- Yoga & Naturopathy frontend.
+- Unani frontend.
+- Siddha frontend.
+- Homoeopathy frontend.
+- Common Clinical frontend.
+- Longitudinal Record frontend.
+- React application entry point and HTML.
+- Vite configuration and public model assets.
 
-## Technologies / components observed
+## Technologies
 - React 19
 - Vite 6
 - React Router
-- JSX/CSS
-- @vladmandic/face-api browser model assets
-- Frontend API client and browser speech utilities
+- JavaScript
+- JSX
+- CSS
+- Face API browser assets
 
-## Setup and execution
-- Start from the complete repository's main branch, not an empty folder.
-- At the repository root run `npm install` (root package.json is shared and retained from the base project).
-- Run `npm run dev` to start all services and Vite; open `http://localhost:5173`.
-- Do not replace the root package.json or package-lock.json with a frontend-only manifest.
+## Setup and Execution
+```bash
+npm ci
+npm run dev
+```
 
-## Dependencies on other members
-- Member 4's API Gateway must be running on port 5000 for API calls; Vite proxies `/v1`, `/api` and WhatsApp paths to it.
-- Member 2's backend services must be available behind the gateway for data-backed screens.
-- Member 4 owns root package.json/package-lock.json and environment/runtime orchestration.
+Frontend runs at:
 
-## Integration notes
-This package is a frontend work package, not a standalone application. The frontend folders from all services are compiled into one React/Vite site. Face model binaries are included under `public/models`.
+`http://localhost:5173`
+
+Build verification:
+
+```bash
+npm run build
+```
+
+## Dependencies on Other Members
+- Member 2 provides backend APIs.
+- Member 4 provides the API Gateway and integration services.
+- Member 3 manages database persistence used by backend services.
+
+## Integration Notes
+The frontend is part of the unified application and requires the integrated backend and API Gateway for API-connected screens. The frontend-only package is not a standalone backend application.
 
 ---
 
 # Member 2 – Backend Services
 
-**Scope:** Owns the business logic and Express service implementations for the Shared Platform, five AYUSH domains, Common Clinical and Longitudinal Record.
+## Scope
+Owns the backend business logic and Express service implementations for the AYUSH domains, Shared Platform, Common Clinical and Longitudinal Record.
 
 ## Responsibilities
-- Shared Platform authentication, OTP, registration, patient/doctor/admin routes, face and Aadhaar backend workflows.
-- Five AYUSH domain service server implementations and common domain-service plumbing.
-- Common Clinical and Longitudinal Record backend APIs and service business logic.
-- Shared backend middleware and validation/security helpers included in this package.
+- Shared Platform authentication and registration backend.
+- OTP and user-management backend workflows.
+- Patient, Doctor and Admin backend routes.
+- Aadhaar and face-related backend workflows.
+- Ayurveda backend service.
+- Yoga & Naturopathy backend service.
+- Unani backend service.
+- Siddha backend service.
+- Homoeopathy backend service.
+- Common Clinical backend service.
+- Longitudinal Record backend service.
+- Shared backend middleware and validation helpers.
+- Backend communication with database and integration components.
 
-## Included files (original project-relative paths)
-- `libs/common/domain-service.js`
-- `libs/common/http.js`
-- `libs/common/security.js`
-- `libs/common/validate.js`
-- `longitudinal-record-service/backend/server.js`
-- `services/ayurveda-service/backend/server.js`
-- `services/common-clinical-service/backend/server.js`
-- `services/homoeopathy-service/backend/server.js`
-- `services/siddha-service/backend/server.js`
-- `services/unani-service/backend/server.js`
-- `services/yoga-naturopathy-service/backend/server.js`
-- `shared-platform/backend/aadhaar.js`
-- `shared-platform/backend/context.js`
-- `shared-platform/backend/face.js`
-- `shared-platform/backend/otp.js`
-- `shared-platform/backend/routes-admin.js`
-- `shared-platform/backend/routes-auth.js`
-- `shared-platform/backend/routes-internal.js`
-- `shared-platform/backend/routes-patient.js`
-- `shared-platform/backend/routes-registration.js`
-- `shared-platform/backend/server.js`
+## Included Components
+- Five AYUSH domain backends.
+- Common Clinical backend.
+- Shared Platform backend.
+- Longitudinal Record backend.
+- Shared backend helper modules.
 
-## Technologies / components observed
+## Technologies
 - Node.js
-- Express 4
-- SQLite via better-sqlite3 (through shared DB helper)
-- Shared service authentication/validation middleware
-- AYUSH domain-service backend pattern
+- Express.js
+- JavaScript
+- SQLite through shared database helper
+- Backend middleware and validation
 
-## Setup and execution
-- Start from the complete repository's main branch so all shared libraries and root configuration are present.
-- At the repository root run `npm install` and configure `.env` from `.env.example` (do not commit `.env` or secrets).
-- Run `npm run dev` to launch the full service set; use `npm run health` to inspect service health.
-- Run `npm run check` for the repository-wide syntax check.
+## Setup and Execution
+```bash
+npm ci
+npm run check
+```
 
-## Dependencies on other members
-- Member 3 provides `libs/common/db.js` and the Shared Platform database initializer/seed files.
-- Member 4 provides `libs/common/config.js`, `events.js` and `internal.js`, plus the API Gateway, Integrations service and Event Bus.
-- Member 1's frontend calls these APIs through Member 4's API Gateway.
+The syntax check verifies JavaScript source files.
 
-## Integration notes
-The backend service source files remain in their original service folders. Several service schemas are initialized in their backend server files or in `libs/common/domain-service.js`; do not move those definitions without coordinating with Member 3 because that would change the existing architecture.
+## Dependencies on Other Members
+- Member 3 provides database helper and database-related components.
+- Member 4 provides API Gateway, Event Bus and integration services.
+- Member 1 consumes backend APIs through the frontend.
+
+## Integration Notes
+Database schemas are currently initialized from backend source files in this project. The backend package is not the complete multi-process application; full end-to-end execution requires Member 4's gateway, Event Bus and integration modules.
+
+---
+
+# Member 3 – Database Design and Management
+
+## Scope
+Owns database directories, the SQLite openDb helper, Shared Platform database schema and seed logic, and backend source files that define or initialize service-specific schemas.
+
+## Responsibilities
+- SQLite database connection and initialization.
+- Shared database helper management.
+- Shared Platform database schema and table management.
+- Seed logic for development and testing.
+- Database ownership and persistence.
+- Database isolation across microservices.
+- Coordination with backend developers for schema requirements.
+- Review of database-related service initialization.
+
+## Included Components
+- `libs/common/db.js`
+- `shared-platform/backend/db.js`
+- `shared-platform/backend/seed.js`
+- `api-gateway/database/`
+- `event-bus/database/`
+- `integrations/database/`
+- `longitudinal-record-service/database/`
+- `services/ayurveda-service/database/`
+- `services/common-clinical-service/database/`
+- `services/homoeopathy-service/database/`
+- `services/siddha-service/database/`
+- `services/unani-service/database/`
+- `services/yoga-naturopathy-service/database/`
+- Backend source files containing service-specific schema definitions.
+
+## Technologies
+- SQLite
+- better-sqlite3
+- Node.js
+- Database initialization and seed logic
+
+## Setup and Execution
+Install the full integrated application's dependencies:
+
+```bash
+npm install
+```
+
+Run seed data when required:
+
+```bash
+npm run seed
+```
+
+Verify database isolation after integration:
+
+```bash
+npm run test:isolation
+```
+
+## Dependencies on Other Members
+- Member 2 uses the database helper and schema definitions in backend services.
+- Member 4 uses shared database functionality for integrations and Event Bus components.
+- Member 1 consumes persisted data through backend APIs.
+
+## Integration Notes
+The supplied source does not have separate migration or schema files for every service. Several service schemas are embedded in backend server files and/or the shared domain-service builder. Those exact files must be retained because removing them would remove the actual database schema definitions.
+
+This is a database-focused work package, not a standalone database server. Full runtime database tests require the full integrated application's dependencies and services.
 
 ---
 
 # Member 4 – API & Integration
 
-**Scope:** Owns the API Gateway, Event Bus, Integrations service (including WhatsApp/OCR/voice), shared inter-service integration helpers, project orchestration, tests and root runtime configuration.
+## Scope
+Owns the API Gateway, Event Bus, Integrations service (including WhatsApp/OCR/voice), shared inter-service integration helpers, project orchestration, tests and root runtime configuration.
 
 ## Responsibilities
-- API Gateway routing, token verification, rate limiting, request IDs, CORS and proxy routing.
+- API Gateway routing and request handling.
+- Token verification and rate limiting.
+- Request IDs, CORS and proxy routing.
 - Event Bus publish/subscribe delivery and retry handling.
-- Integrations backend, WhatsApp bot/drivers/language/reader/voice modules, OCR language data and external-healthcare status endpoint.
-- Shared service routing/configuration, internal HTTP clients and event publishing helpers.
-- Root scripts, service process orchestration, project-wide tests, documentation and runtime package/environment configuration.
+- Integrations backend.
+- WhatsApp bot, drivers and language modules.
+- WhatsApp OCR reader and voice modules.
+- External healthcare status endpoint.
+- Shared service routing and configuration.
+- Internal HTTP clients and event publishing helpers.
+- Root scripts and service process orchestration.
+- Project-wide tests and runtime configuration.
 
-## Included files (original project-relative paths)
-- `.env.example`
-- `.gitignore`
-- `README.md`
-- `api-gateway/backend/server.js`
-- `api-gateway/frontend/README.md`
-- `docs/ACCEPTANCE-EVIDENCE.md`
-- `docs/ARCHITECTURE.md`
-- `docs/LIMITATIONS.md`
-- `docs/OCR-READER-FIX.md`
-- `event-bus/backend/server.js`
-- `integrations/backend/server.js`
-- `integrations/external-healthcare/status.js`
-- `integrations/tessdata/eng.traineddata`
-- `integrations/whatsapp/bot.js`
-- `integrations/whatsapp/drivers.js`
-- `integrations/whatsapp/i18n.js`
-- `integrations/whatsapp/reader.js`
-- `integrations/whatsapp/voice.js`
-- `libs/common/config.js`
-- `libs/common/events.js`
-- `libs/common/internal.js`
-- `package-lock.json`
-- `package.json`
-- `scripts/acceptance-test.js`
-- `scripts/check-syntax.js`
-- `scripts/dev-all.js`
-- `scripts/health.js`
-- `scripts/isolation-test.js`
-- `scripts/reader-test.js`
-- `scripts/services.js`
+## Included Components
+- API Gateway backend.
+- Event Bus backend.
+- Integrations backend.
+- WhatsApp integration modules.
+- External healthcare integration.
+- Shared configuration and event helpers.
+- Internal HTTP helper modules.
+- Project-wide acceptance and isolation tests.
+- Health-check and service orchestration scripts.
+- Root `package.json` and `package-lock.json`.
+- Environment example configuration.
 
-## Technologies / components observed
+## Technologies
 - Node.js
 - Express 4
-- API Gateway / reverse proxy
+- API Gateway and reverse proxy
 - HTTP inter-service clients
-- Event Bus (durable publish/subscribe)
-- WhatsApp integration (Baileys optional dependency)
-- Tesseract OCR / voice processing modules
-- Project test and orchestration scripts
+- Event Bus
+- WhatsApp integration using optional Baileys dependency
+- Tesseract OCR
+- Voice processing modules
 
-## Setup and execution
-- Start from the complete repository's main branch.
-- Copy `.env.example` to `.env` and set required secrets/provider settings locally; never commit `.env` or credentials.
-- Run `npm install`, then `npm run dev` to launch the Event Bus, Gateway, backend services, Integrations and Vite.
-- Run `npm run health`, `npm test`, `npm run test:isolation`, `npm run test:reader`, `npm run check` and `npm run build` as appropriate.
+## Setup and Execution
+Configure environment variables using `.env.example`. Never commit `.env` files or credentials.
 
-## Dependencies on other members
-- Member 2's backend services must be running for gateway routing, internal service calls and end-to-end tests.
-- Member 3's database helper is used by Event Bus and Integrations and must remain available.
-- Member 1's frontend is served through Vite in development and by the Gateway after a production build.
+Install dependencies:
 
-## Integration notes
-The uploaded project has no existing `.github/workflows` CI workflow in the original package. This package includes project test/orchestration scripts and the API/integration code. GitHub Actions CI configuration has been added separately in this repository.
+```bash
+npm install
+```
+
+Start the application:
+
+```bash
+npm run dev
+```
+
+Health check:
+
+```bash
+npm run health
+```
+
+Available project checks:
+
+```bash
+npm run check
+npm test
+npm run test:isolation
+npm run test:reader
+npm run build
+```
+
+## Dependencies on Other Members
+- Member 2's backend services are required for gateway routing and end-to-end tests.
+- Member 3 provides database helper functionality used by Event Bus and Integrations.
+- Member 1's frontend is served through Vite and communicates through the API Gateway.
+
+## Integration Notes
+The original Member 4 package did not contain an existing GitHub Actions workflow. The CI workflow is maintained separately under `.github/workflows/` in the integration repository.
 
 ---
 
-# GitHub Branch Usage
+# Overall Project Integration
 
-Each member branch should be created from the same complete, working project baseline in `main`.
+All four members contribute to one unified AYUSH Digital Health Platform.
 
-Extract each member ZIP at the repository root so the original paths overlay the baseline. Do not create a new empty repository from an individual ZIP alone; each package intentionally contains only the files assigned to that member.
+| Member | Main Responsibility |
+|---|---|
+| Member 1 | Frontend Development |
+| Member 2 | Backend Services |
+| Member 3 | Database Design and Management |
+| Member 4 | API Gateway and Integrations |
 
-After testing, merge each member branch into the integration branch and verify the complete application before merging the integrated result into `main`.
+## Integration Flow
+
+1. Member 1 develops the frontend interface.
+2. Member 2 implements backend services and business logic.
+3. Member 3 manages database helper functionality, schema and persistence.
+4. Member 4 handles API Gateway, Event Bus and external integrations.
+5. The frontend communicates with backend services through the API Gateway.
+6. Backend services use their assigned database components.
+7. Event Bus and integration services support inter-service communication.
+
+## GitHub Branch Strategy
+
+Each member maintains a separate development branch:
+
+- `frontend`
+- `backend`
+- `database`
+- `api-integration`
+
+Member branches are integrated into `api-integration` after resolving conflicts and verifying the changes.
+
+After integration, the complete application is tested before merging into `main`.
+
+## Continuous Integration
+
+GitHub Actions is used to automate project checks whenever changes are pushed to the configured integration branch.
+
+The CI pipeline can include:
+- Dependency installation.
+- JavaScript syntax checking.
+- WhatsApp reader regression testing.
+- Frontend build verification.
+- Database isolation testing.
+- Full acceptance testing.
+
+Full integration tests should run after all required project components are present in the integration branch.
