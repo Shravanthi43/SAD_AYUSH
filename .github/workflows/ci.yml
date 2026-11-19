@@ -1,0 +1,42 @@
+name: AYUSH CI Pipeline
+
+on:
+  push:
+    branches:
+      - api-integration
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Frontend Build Check
+        run: npm run build
+
+      - name: Syntax Check
+        run: npm run check
+
+      - name: WhatsApp Reader Test
+        run: npm run test:reader
+
+      - name: Database Isolation Test
+        run: npm run test:isolation
+
+      - name: Full Acceptance Test
+        run: npm test
